@@ -27,9 +27,9 @@ button {
   outline: none;
   width: 240px;
   height: 56px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 24px;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: white;
   border: none;
   border-radius: 6px;
