@@ -1,4 +1,4 @@
-/* ROBOT.GIF from Giphy - https://giphy.com/gifs/animation-robot-character-design-3ohhwkEMAApurvNCGQ */
+/* ROBOT.GIF from Giphy - https://giphy.com/gifs/warroominc-lol-laugh-laughing-drrbr0Cd7EgdmIofFG */
 
 html {
   box-sizing: border-box;
@@ -17,8 +17,8 @@ body {
   justify-content: center;
   align-items: center;
   background: url('./robot.gif');
-  background-size:auto;
-  background-position: center center;
+  background-size: 35vh;
+  background-position: 28% 35%;
   background-repeat: no-repeat;
 }
 
@@ -33,12 +33,12 @@ button {
   color: white;
   border: none;
   border-radius: 6px;
-  box-shadow: 0px 0px 16px 2px rgba(88, 0, 25, 0.2);
-  background-color: #FF5673;
+  box-shadow: 0px 0px 16px 2px rgba(0, 21, 88, 0.2);
+  background-color: #676986;
 }
 
 button:hover {
-  background-color: #f4526d;
+  background-color: #5b5d79;
 }
 
 button:active {
@@ -47,15 +47,13 @@ button:active {
 
 button:disabled {
   cursor: default;
-  background-color: #e4a0ab;
+  background-color: #d0d9e6;
+  box-shadow: none;
 }
 /* Media Query: Tablet or Smaller */
 @media screen and (max-width: 1000px) {
-  .container {
-    background-size: cover;
-  }
 
   button {
-    box-shadow: 0px 0px 16px 2px rgba(88, 0, 25, 0.5);
+    box-shadow: 0px 0px 16px 2px rgba(0, 21, 88, 0.3);
   }
 }
