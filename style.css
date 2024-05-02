@@ -1,16 +1,47 @@
 /* ROBOT.GIF from Giphy - https://giphy.com/gifs/warroominc-lol-laugh-laughing-drrbr0Cd7EgdmIofFG */
 
-html {
+/* Color variables for global use */
+:root {
+  --background-light-blue: #C2DCFD;
+  --border-dashed-blue: #DFEBFF;
+  --text-outline-gray: #494b66;
+  --button-normal-gray: #676986;
+  --button-hover-gray: #5b5d79;
+  --button-disabled-gray: #d0d9e6;
+  --white: #fff;
+  --black: #000;
+  --shadow-dark: rgba(0, 0, 0, 0.1);
+  --px: 4px;
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url(fonts/PressStart2P-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url(fonts/RobotoMono-VariableFont_wght.ttf) format('truetype');
+}
+
+* {
   box-sizing: border-box;
+  /* border: 1px solid red; */
 }
 
 body {
   margin: 0;
   height: 100vh;
-  background-color: white;
-  font-family: 'Courier New', Courier, monospace;
+  background-color: var(--white);
+  font-family: 'Roboto Mono', Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
+}
+
+header {
+  background-color: var(--background-light-blue);
+  border-bottom: 24px solid var(--border-dashed-blue);
+  padding: 32px;
 }
 
 h1 {
@@ -18,18 +49,28 @@ h1 {
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 10px;
-  background-color: #C2DCFD;
-  color: white;
-  padding: 40px;
+  color: var(--white);
   margin: 0;
-  border-block: 20px dashed #DFEBFF;
-  -webkit-text-stroke: 2px #494b66;
+  -webkit-text-stroke: 2px var(--text-outline-gray);
   text-shadow:
-    3px 3px 0 #494b66,
-    -1px -1px 0 #494b66,
-    1px -1px 0 #494b66,
-    -1px 1px 0 #494b66,
-    1px 1px 0 #494b66;
+    3px 3px 0 var(--text-outline-gray),
+    -1px -1px 0 var(--text-outline-gray),
+    1px -1px 0 var(--text-outline-gray),
+    -1px 1px 0 var(--text-outline-gray),
+    1px 1px 0 var(--text-outline-gray);
+}
+
+footer {
+  background-color: var(--background-light-blue);
+  border-top: 24px solid var(--border-dashed-blue);
+  padding: 48px;
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-outline-gray);
 }
 
 .container {
@@ -37,31 +78,33 @@ h1 {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: url('./robot.gif');
   background-size: 35vh;
   background-position: 25% 28%;
   background-repeat: no-repeat;
+  padding: 250px;
 }
 
 button {
   cursor: pointer;
   outline: none;
-  width: 240px;
-  height: 56px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 24px;
-  text-transform: lowercase;
-  color: white;
+  width: initial;
+  padding-inline: 40px;
+  padding-block: 24px;
+  font-family: 'Roboto Mono', Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--white);
   border: none;
   border-radius: 6px;
   box-shadow: 0px 0px 16px 2px rgba(0, 21, 88, 0.2);
-  background-color: #676986;
+  background-color: var(--button-normal-gray);
 }
 
 button:hover {
-  background-color: #5b5d79;
+  background-color: var(--button-hover-gray);
 }
 
 button:active {
@@ -70,14 +113,59 @@ button:active {
 
 button:disabled {
   cursor: default;
-  background-color: #d0d9e6;
+  background-color: var(--button-disabled-gray);
   box-shadow: none;
 }
 
 /* Media Query: Tablet or Smaller */
 @media screen and (max-width: 1000px) {
+  .container {
+    padding: 0;
+  }
 
   button {
     box-shadow: 0px 0px 16px 2px rgba(0, 21, 88, 0.3);
+    padding-inline: 32px;
+    padding-block: 24px;
+    font-size: 18px;
   }
+}
+
+.bubble {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-family: 'Press Start 2P';
+  font-size: 16px;
+  line-height: 1.3em;
+  background-color: var(--white);
+  color: var(--black);
+  padding: 16px;
+  box-shadow: 0 -4px var(--white),
+    0 -8px var(--black),
+    4px 0 var(--white),
+    4px -4px var(--black),
+    8px 0 var(--black),
+    0 4px var(--white),
+    0 8px var(--black),
+    -4px 0 var(--white),
+    -4px 4px var(--black),
+    -8px 0 var(--black),
+    -4px -4px var(--black),
+    4px 4px var(--black);
+  width: initial;
+  top: 0;
+}
+
+.bubble::after {
+  content: "";
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  height: 4px;
+  width: 4px;
+  top: 20px;
+  left: -8px;
+  background: white;
+  box-shadow: -4px -4px #fff, -4px 0 #fff, -8px 0 #fff, 0 -8px #fff, -4px 4px #000, -8px 4px #000, -12px 4px #000, -16px 4px #000, -12px 0 #000, -8px -4px #000, -4px -8px #000, 0 -4px #fff;
 }
