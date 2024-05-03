@@ -1,13 +1,13 @@
-const buttonElement = document.getElementById('button');
-const audioElement = document.getElementById('audio');
+const jokeButton = document.getElementById('button');
+const speechAudio = document.getElementById('audio');
 
 // Disable/Enable Button
-function toggleButton() {
-    buttonElement.disabled = !buttonElement.disabled;
+function toggleButtonDisabledState() {
+    jokeButton.disabled = !jokeButton.disabled;
 }
 
 // Passing Joke to VoiceRSS API
-function tellMe(joke) {
+function speakJoke(joke) {
     console.log('tell me:', joke);
     VoiceRSS.speech({
         key: 'fd73e79b4011402b97dd9a4faa304864',
@@ -22,7 +22,7 @@ function tellMe(joke) {
 }
 
 // Get Jokes from Joke-API
-async function getJokes() {
+async function fetchAndDisplayJoke() {
     let joke = '';
     const apiUrl = 'https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
     const bubbleElement = document.querySelector('.bubble');
@@ -38,16 +38,16 @@ async function getJokes() {
         // Displaying joke in the Speech-Bubble
         bubbleElement.textContent = joke;
         // Text-to-Speech
-        tellMe(joke);
+        speakJoke(joke);
         // Disable Button
-        toggleButton();
+        toggleButtonDisabledState();
     } catch (error) {
         // Catch Errors Here
-        console.log('whoops', error);
+        console.log('Error fetching joke:', error);
         bubbleElement.textContent = "Failed to fetch joke.";
     }
 }
 
 // Event Listeners
-buttonElement.addEventListener('click', getJokes);
-audioElement.addEventListener('ended', toggleButton);
+jokeButton.addEventListener('click', fetchAndDisplayJoke);
+speechAudio.addEventListener('ended', toggleButtonDisabledState);
