@@ -28,7 +28,8 @@ function tellMe(joke) {
 async function getJokes() {
     let joke = '';
     const apiUrl = 'https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
-    
+    const bubbleElement = document.querySelector('.bubble');
+
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -37,6 +38,8 @@ async function getJokes() {
         } else {
             joke = data.joke;
         }
+        // Displaying joke in the Speech-Bubble
+        bubbleElement.textContent = joke;
         // Text-to-Speech
         tellMe(joke);
         // Disable Button
@@ -44,6 +47,7 @@ async function getJokes() {
     } catch (error) {
         // Catch Errors Here
         console.log('whoops', error);
+        bubbleElement.textContent = "Failed to fetch joke.";
     }
 }
 
